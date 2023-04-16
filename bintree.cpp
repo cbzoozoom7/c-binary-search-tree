@@ -5,49 +5,6 @@
 BinTree::BinTree() {
     root = nullptr;
     count = 0;
-    int ids[7] = {60, 20, 70, 40, 10, 50, 30};
-    string strings[7] = {"sixty", "twenty", "seventy", "forty", "ten", "fifty", "thirty"};
-    root = new DataNode;
-    root->left = NULL;
-    root->right = NULL;
-    root->data.id = ids[0];
-    root->data.information = strings[0];
-
-    root->left = new DataNode;
-    root->left->left = NULL;
-    root->left->right = NULL;
-    root->left->data.id = ids[1];
-    root->left->data.information = strings[1];
-
-    root->right = new DataNode;
-    root->right->left = NULL;
-    root->right->right = NULL;
-    root->right->data.id = ids[2];
-    root->right->data.information = strings[2];
-
-    root->left->right = new DataNode;
-    root->left->right->left = NULL;
-    root->left->right->right = NULL;
-    root->left->right->data.id = ids[3];
-    root->left->right->data.information = strings[3];
-    
-    root->left->left = new DataNode;
-    root->left->left->left = NULL;
-    root->left->left->right = NULL;
-    root->left->left->data.id = ids[4];
-    root->left->left->data.information = strings[4];
-    
-    root->left->right->right = new DataNode;
-    root->left->right->right->left = NULL;
-    root->left->right->right->right = NULL;
-    root->left->right->right->data.id = ids[5];
-    root->left->right->right->data.information = strings[5];
-    
-    root->left->right->left = new DataNode;
-    root->left->right->left->left = NULL;
-    root->left->right->left->right = NULL;
-    root->left->right->left->data.id = ids[6];
-    root->left->right->left->data.information = strings[6];
 }
 void BinTree::displayTree() {
     std::cout << "DISPLAY TREE\n==============================================" << std::endl;
@@ -129,6 +86,33 @@ int BinTree::getHeight(DataNode *tempRoot) {
 int BinTree::getCount() {
     return count;
 }
+bool BinTree::addNode(int id, const string *data) {
+    bool added = false;
+    if (id > 0 && *data != "") {
+        DataNode *newNode = new DataNode;
+        newNode->data.id = id;
+        newNode->data.information = *data;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+        added = addNode(newNode, &root);
+    }
+    return added;
+}
+bool BinTree::addNode(DataNode *newNode, DataNode **tempRoot) {
+    bool added = false;
+    if (*tempRoot) {
+        if (newNode->data.id > (*tempRoot)->data.id) {
+            added = addNode(newNode, &((*tempRoot)->right));
+        } else {
+            added = addNode(newNode, &((*tempRoot)->left));
+        }
+    } else {
+        *tempRoot = newNode;
+        count++;
+        added = true;
+    }
+    return added;
+}
 BinTree::~BinTree() {
 
 }
@@ -141,9 +125,6 @@ bool BinTree::getRootData(Data *d) {
 void BinTree::clear() {
 
 }
-bool BinTree::addNode(int id, const string *data) {
-    return false;
-}
 bool BinTree::removeNode(int id) {
     return false;
 }
@@ -155,9 +136,6 @@ bool BinTree::contains(int id) {
 }
 void BinTree::clear(DataNode *tempRoot) {
 
-}
-bool BinTree::addNode(DataNode *data, DataNode **tempRoot) {
-    return false;
 }
 DataNode *BinTree::removeNode(int id, DataNode *tempRoot) {
     return nullptr;
