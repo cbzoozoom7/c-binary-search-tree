@@ -66,6 +66,20 @@ void BinTree::displayTree() {
     displayPostOrder();
     std::cout << "==============================================\n" <<std::endl;
 }
+void BinTree::displayPreOrder() {
+    displayPreOrder(root);
+}
+void BinTree::displayPreOrder(DataNode *tempRoot) {
+    if (tempRoot) {
+        std::cout << tempRoot->data.id << " " << tempRoot->data.information << std::endl;
+        if (tempRoot->left) {
+            displayPreOrder(tempRoot->left);
+        }
+        if (tempRoot->right) {
+            displayPreOrder(tempRoot->right);
+        }
+    }
+}
 void BinTree::displayInOrder() {
     displayInOrder(root);
 }
@@ -110,9 +124,6 @@ bool BinTree::contains(int id) {
 int BinTree::getHeight() {
     return -1;
 }
-void BinTree::displayPreOrder() {
-
-}
 void BinTree::displayPostOrder() {
 
 }
@@ -133,9 +144,6 @@ bool BinTree::contains(int id, DataNode *tempRoot) {
 }
 int BinTree::getHeight(DataNode *tempRoot) {
     return -1;
-}
-void BinTree::displayPreOrder(DataNode *tempRoot) {
-
 }
 void BinTree::displayPostOrder(DataNode *tempRoot) {
 
