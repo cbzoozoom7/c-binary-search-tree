@@ -49,6 +49,23 @@ BinTree::BinTree() {
     root->left->right->left->data.id = ids[6];
     root->left->right->left->data.information = strings[6];
 }
+void BinTree::displayTree() {
+    std::cout << "DISPLAY TREE\n==============================================" << std::endl;
+    if (isEmpty()) {
+        std::cout << "Tree is empty" << std::endl;
+    } else {
+        std::cout << "Tree is NOT empty" << std::endl;
+    }
+    std::cout << "Height " << getHeight() << std::endl;
+    std::cout << "Node count: " << getCount() << std::endl;
+    std::cout << "\nPre-Order Traversal" << std::endl;
+    displayPreOrder();
+    std::cout << "\nIn-Order Traversal" << std::endl;
+    displayInOrder();
+    std::cout << "\nPost-Order Traversal" << std::endl;
+    displayPostOrder();
+    std::cout << "==============================================\n" <<std::endl;
+}
 void BinTree::displayInOrder() {
     displayInOrder(root);
 }
@@ -74,9 +91,6 @@ int BinTree::getCount() {
 }
 bool BinTree::getRootData(Data *d) {
     return false;
-}
-void BinTree::displayTree() {
-
 }
 void BinTree::clear() {
 
