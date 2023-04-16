@@ -3,7 +3,65 @@
 //Created 16 Apr 2023
 #include "bintree.h"
 BinTree::BinTree() {
+    root = nullptr;
+    count = 0;
+    int ids[7] = {60, 20, 70, 40, 10, 50, 30};
+    string strings[7] = {"sixty", "twenty", "seventy", "forty", "ten", "fifty", "thirty"};
+    root = new DataNode;
+    root->left = NULL;
+    root->right = NULL;
+    root->data.id = ids[0];
+    root->data.information = strings[0];
 
+    root->left = new DataNode;
+    root->left->left = NULL;
+    root->left->right = NULL;
+    root->left->data.id = ids[1];
+    root->left->data.information = strings[1];
+
+    root->right = new DataNode;
+    root->right->left = NULL;
+    root->right->right = NULL;
+    root->right->data.id = ids[2];
+    root->right->data.information = strings[2];
+
+    root->left->right = new DataNode;
+    root->left->right->left = NULL;
+    root->left->right->right = NULL;
+    root->left->right->data.id = ids[3];
+    root->left->right->data.information = strings[3];
+    
+    root->left->left = new DataNode;
+    root->left->left->left = NULL;
+    root->left->left->right = NULL;
+    root->left->left->data.id = ids[4];
+    root->left->left->data.information = strings[4];
+    
+    root->left->right->right = new DataNode;
+    root->left->right->right->left = NULL;
+    root->left->right->right->right = NULL;
+    root->left->right->right->data.id = ids[5];
+    root->left->right->right->data.information = strings[5];
+    
+    root->left->right->left = new DataNode;
+    root->left->right->left->left = NULL;
+    root->left->right->left->right = NULL;
+    root->left->right->left->data.id = ids[6];
+    root->left->right->left->data.information = strings[6];
+}
+void BinTree::displayInOrder() {
+    displayInOrder(root);
+}
+void BinTree::displayInOrder(DataNode *tempRoot) {
+    if (tempRoot) {
+        if (tempRoot->left) {
+            displayInOrder(tempRoot->left);
+        }
+        std::cout << tempRoot->data.id << " " << tempRoot->data.information << std::endl;
+        if (tempRoot->right) {
+            displayInOrder(tempRoot->right);
+        }
+    }
 }
 BinTree::~BinTree() {
 
@@ -44,9 +102,6 @@ void BinTree::displayPreOrder() {
 void BinTree::displayPostOrder() {
 
 }
-void BinTree::displayInOrder() {
-
-}
 void BinTree::clear(DataNode *tempRoot) {
 
 }
@@ -69,8 +124,5 @@ void BinTree::displayPreOrder(DataNode *tempRoot) {
 
 }
 void BinTree::displayPostOrder(DataNode *tempRoot) {
-
-}
-void BinTree::displayInOrder(DataNode *tempRoot) {
 
 }

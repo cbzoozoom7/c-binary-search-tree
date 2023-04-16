@@ -5,6 +5,7 @@
 #ifndef BINTREE_BINTREE_H
     #define BINTREE_BINTREE_H
     #include <string>
+    #include <iostream>
     #include "data.h"
     using std::string;
     class BinTree {
