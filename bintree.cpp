@@ -108,6 +108,24 @@ void BinTree::displayPostOrder(DataNode *tempRoot) {
         std::cout << tempRoot->data.id << " " << tempRoot->data.information << std::endl;
     }
 }
+int BinTree::getHeight() {
+    return getHeight(root);
+}
+int BinTree::getHeight(DataNode *tempRoot) {
+    int lh = 0;
+    int rh = 0;
+    int h = 0;
+    if (tempRoot) {
+        lh = getHeight(tempRoot->left);
+        rh = getHeight(tempRoot->right);
+        if (lh > rh) {
+            h = lh + 1;
+        } else {
+            h = rh + 1;
+        }
+    }
+    return h;
+}
 BinTree::~BinTree() {
 
 }
@@ -135,9 +153,6 @@ bool BinTree::getNode(Data* d, int id) {
 bool BinTree::contains(int id) {
     return false;
 }
-int BinTree::getHeight() {
-    return -1;
-}
 void BinTree::clear(DataNode *tempRoot) {
 
 }
@@ -152,7 +167,4 @@ bool BinTree::getNode(Data *d, int id, DataNode *tempRoot) {
 }
 bool BinTree::contains(int id, DataNode *tempRoot) {
     return false;
-}
-int BinTree::getHeight(DataNode *tempRoot) {
-    return -1;
 }
