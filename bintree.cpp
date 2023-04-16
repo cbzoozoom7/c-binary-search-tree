@@ -126,14 +126,14 @@ int BinTree::getHeight(DataNode *tempRoot) {
     }
     return h;
 }
+int BinTree::getCount() {
+    return count;
+}
 BinTree::~BinTree() {
 
 }
 bool BinTree::isEmpty() {
     return false;
-}
-int BinTree::getCount() {
-    return -1;
 }
 bool BinTree::getRootData(Data *d) {
     return false;
