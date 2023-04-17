@@ -37,6 +37,8 @@
             void displayPreOrder(DataNode*);
             void displayPostOrder(DataNode*);
             void displayInOrder(DataNode*);
+            DataNode *findNode(int);
+            DataNode *findNode(int, DataNode*);
     };
 
 
