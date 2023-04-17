@@ -156,6 +156,19 @@ bool BinTree::getNode(Data *d, int id, DataNode *tempRoot) {
     }
     return found;
 }
+void BinTree::clear() {
+    clear(root);
+}
+void BinTree::clear(DataNode *tempRoot) {
+    if (tempRoot) {
+        clear(tempRoot->right);
+        clear(tempRoot->left);
+        tempRoot->right = nullptr;
+        tempRoot->left = nullptr;
+        delete tempRoot;
+        count--;
+    }
+}
 BinTree::~BinTree() {
 
 }
@@ -165,14 +178,8 @@ bool BinTree::isEmpty() {
 bool BinTree::getRootData(Data *d) {
     return false;
 }
-void BinTree::clear() {
-
-}
 bool BinTree::removeNode(int id) {
     return false;
-}
-void BinTree::clear(DataNode *tempRoot) {
-
 }
 DataNode *BinTree::removeNode(int id, DataNode *tempRoot) {
     return nullptr;
