@@ -142,7 +142,11 @@ DataNode *BinTree::findNode(int id, DataNode *tempRoot) {
     return found;
 }
 bool BinTree::getNode(Data* d, int id) {
-    return getNode(d, id, root);
+    bool didGet = false;
+    if (id > 0) {
+        didGet = getNode(d, id, root);
+    }
+    return didGet;
 }
 bool BinTree::getNode(Data *d, int id, DataNode *tempRoot) {
     DataNode *found = findNode(id);
