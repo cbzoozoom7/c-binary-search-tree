@@ -113,6 +113,28 @@ bool BinTree::addNode(DataNode *newNode, DataNode **tempRoot) {
     }
     return added;
 }
+bool BinTree::contains(int id) {
+    bool found = false;
+    if (id > 0) {
+        found = contains(id, root);
+    }
+    return found;
+}
+bool BinTree::contains(int id, DataNode *tempRoot) {
+    bool found = false;
+    if (tempRoot) {
+        if (tempRoot->data.id == id) {
+            found = true;
+        } else {
+            if (id > tempRoot->data.id) {
+                found = contains(id, tempRoot->right);
+            } else {
+                found = contains(id, tempRoot->left);
+            }
+        }
+    }
+    return found;
+}
 BinTree::~BinTree() {
 
 }
@@ -131,9 +153,6 @@ bool BinTree::removeNode(int id) {
 bool BinTree::getNode(Data* d, int id) {
     return false;
 }
-bool BinTree::contains(int id) {
-    return false;
-}
 void BinTree::clear(DataNode *tempRoot) {
 
 }
@@ -141,8 +160,5 @@ DataNode *BinTree::removeNode(int id, DataNode *tempRoot) {
     return nullptr;
 }
 bool BinTree::getNode(Data *d, int id, DataNode *tempRoot) {
-    return false;
-}
-bool BinTree::contains(int id, DataNode *tempRoot) {
     return false;
 }
