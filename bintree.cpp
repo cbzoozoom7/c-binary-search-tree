@@ -158,6 +158,7 @@ bool BinTree::getNode(Data *d, int id, DataNode *tempRoot) {
 }
 void BinTree::clear() {
     clear(root);
+    root = nullptr;
 }
 void BinTree::clear(DataNode *tempRoot) {
     if (tempRoot) {
@@ -169,18 +170,58 @@ void BinTree::clear(DataNode *tempRoot) {
         count--;
     }
 }
-BinTree::~BinTree() {
-
-}
-bool BinTree::isEmpty() {
-    return false;
-}
-bool BinTree::getRootData(Data *d) {
-    return false;
-}
 bool BinTree::removeNode(int id) {
-    return false;
+    int tempCount = count;
+    root = removeNode(id, root);
+    return count < tempCount;
 }
 DataNode *BinTree::removeNode(int id, DataNode *tempRoot) {
-    return nullptr;
+    if (tempRoot) {
+        if (id > tempRoot->data.id) {
+            tempRoot->right = removeNode(id, tempRoot->right);
+        } else if (id < tempRoot->data.id) {
+            tempRoot->left = removeNode(id, tempRoot->left);
+        } else {
+            DataNode *temp;
+            if (!(tempRoot->left)) {
+                temp = tempRoot->right;
+                delete tempRoot;
+                tempRoot = temp;
+                count--;
+            } else if (!(tempRoot->right)) {
+                temp = tempRoot->left;
+                delete tempRoot;
+                tempRoot = temp;
+                count--;
+            } else {
+                temp = minValueNode(tempRoot->right);
+                tempRoot->data.id = temp->data.id;
+                tempRoot->data.information = temp->data.information;
+                tempRoot->right = removeNode(temp->data.id, tempRoot->right);
+            }
+        }
+    }
+    return tempRoot;
+}
+DataNode *BinTree::minValueNode(DataNode* node) {
+    DataNode* current = node;
+    while (current && current->left != NULL) {
+        current = current->left;
+    }
+    return current;
+}
+BinTree::~BinTree() {
+    clear();
+}
+bool BinTree::isEmpty() {
+    return !root;
+}
+bool BinTree::getRootData(Data *d) {
+    if (root) {
+        d->id = root->data.id;
+        d->information = root->data.information;
+    } else {
+        
+    }
+    return false;
 }

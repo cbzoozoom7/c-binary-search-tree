@@ -39,6 +39,7 @@
             void displayInOrder(DataNode*);
             DataNode *findNode(int);
             DataNode *findNode(int, DataNode*);
+            DataNode *minValueNode(DataNode*);
     };
 
 
