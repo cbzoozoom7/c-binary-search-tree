@@ -221,7 +221,8 @@ bool BinTree::getRootData(Data *d) {
         d->id = root->data.id;
         d->information = root->data.information;
     } else {
-        
+        d->id = -1;
+        d->information = "";
     }
-    return false;
+    return root;
 }
